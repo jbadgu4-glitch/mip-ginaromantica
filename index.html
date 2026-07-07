@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <title>Para Gaby</title>
+    <style>
+      body{margin:0;background:#000;overflow:hidden}
+      canvas{position:absolute;top:0;left:0}
+      .nombre{position:absolute;font-size:2.5em;font-weight:bold;font-family:Georgia;text-shadow:0 0 25px #ff69b4;animation:brillar 2s infinite;}
+      .izq{left:8%;color:#87ceeb}
+      .der{right:8%;color:#ffc0cb}
+      @keyframes brillar{50%{opacity:0.4}}
+      #txt{position:absolute;bottom:35px;width:100%;text-align:center;color:wheat;font-size:18px;}
+    </style>
+    </head>
+    <body>
+    <canvas id="c"></canvas>
+    <div class="nombre izq" style="top:57%">Efren</div>
+    <div class="nombre izq" style="top:63%">Gaby</div>
+    <div class="nombre der" style="top:70%">Efren</div>
+    <div class="nombre der" style="top:76%">Gaby</div>
+    <div id="txt">Gracias por todo, siempre serás lo más bonito que tuve en mi vida ¡Feliz Cumpleaños Gaby!</div>
+    <script>
+    c=document.getElementById('c');ctx=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+    ctx.strokeStyle="white";ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(c.width/2,c.height/2+100);ctx.bezierCurveTo(c.width/2-90,c.height/2-30,c.width/2-180,c.height/2+80,c.width/2,c.height/2+180);ctx.bezierCurveTo(c.width/2+180,c.height/2+80,c.width/2+90,c.height/2-30,c.width/2,c.height/2+100);ctx.stroke();
+    let h=[];for(i=0;i<200;i++)h.push({x:Math.random()*c.width,y:Math.random()*c.height,a:Math.random()*6+3,v:Math.random()+0.5});
+    setInterval(()=>{ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle="pink";for(i of h){ctx.beginPath();ctx.moveTo(i.x,i.y);ctx.bezierCurveTo(i.x-i.a/2,i.y-i.a/2,i.x-i.a,i.y+i.a/3,i.x,i.y+i.a);ctx.bezierCurveTo(i.x+i.a,i.y+i.a/3,i.x+i.a/2,i.y-i.a/2,i.x,i.y);ctx.fill();i.y+=i.v;if(i.y>c.height){i.y=0;i.x=Math.random()*c.width}}},20);
+    </script>
+    </body>
+    </html>
